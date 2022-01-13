@@ -1,2 +1,4 @@
 # qplan
-Personal planner
+A QT based personal planner.
+
+Under construction...
