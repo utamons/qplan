@@ -14,30 +14,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-
-#include <QMainWindow>
-#include "mainlistmodel.h"
 #include "settings.h"
+#include <QStandardPaths>
+#include <QFile>
+#include <QDebug>
+#include <QDir>
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow
+Settings::Settings(QObject *parent)
+    : QObject{parent}
 {
-    Q_OBJECT
+    QString settings;
+    //QFile file;
+    QString path = QStandardPaths::locate(QStandardPaths::AppDataLocation, MAIN_FILE_NAME);
+    if (path.isEmpty()) {
+        qDebug() << "File not found, path" << QStandardPaths::writableLocation(QStandardPaths::AppDataLocation).append(QDir::separator()).append(MAIN_FILE_NAME);
 
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
-private:
-    Ui::MainWindow *ui;
-    MainListModel *mainListModel;
-    Settings *settings;
-
-
-};
-#endif // MAINWINDOW_H
+    } else
+        qDebug() << "File found";
+    /*file.setFileName(QStandardPaths::AppDataLocation);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    settings = file.readAll();
+    file.close();*/
+}

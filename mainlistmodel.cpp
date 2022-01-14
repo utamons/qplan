@@ -14,30 +14,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-
-#include <QMainWindow>
 #include "mainlistmodel.h"
-#include "settings.h"
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow
+MainListModel::MainListModel(QObject *parent)
+    : QAbstractListModel{parent}
 {
-    Q_OBJECT
+    stringList << "Item1" << "Item2" << "Item3";
+}
 
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+int MainListModel::rowCount(const QModelIndex &parent) const
+{
+    return stringList.size();
+}
 
-private:
-    Ui::MainWindow *ui;
-    MainListModel *mainListModel;
-    Settings *settings;
+QVariant MainListModel::data(const QModelIndex &index, int role) const
+{
+    if (!index.isValid())
+        return QVariant();
 
+    if (index.row() >= stringList.size())
+        return QVariant();
 
-};
-#endif // MAINWINDOW_H
+    if (role == Qt::DisplayRole)
+        return stringList.at(index.row());
+    else
+        return QVariant();
+}

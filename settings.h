@@ -14,30 +14,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef SETTINGS_H
+#define SETTINGS_H
 
-#include <QMainWindow>
-#include "mainlistmodel.h"
-#include "settings.h"
+#include "qobject.h"
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow
+class Settings : public QObject
 {
     Q_OBJECT
-
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit Settings(QObject *parent = nullptr);
 
 private:
-    Ui::MainWindow *ui;
-    MainListModel *mainListModel;
-    Settings *settings;
+    const QString MAIN_FILE_NAME = "main.json";
 
+signals:
 
 };
-#endif // MAINWINDOW_H
+
+#endif // SETTINGS_H

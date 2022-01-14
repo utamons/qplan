@@ -22,6 +22,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    mainListModel = new MainListModel(this);
+    settings = new Settings(this);
+
+    ui->mainListView->setModel(mainListModel);
 }
 
 MainWindow::~MainWindow()

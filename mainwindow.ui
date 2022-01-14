@@ -61,30 +61,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QListWidget" name="listWidget">
-         <property name="spacing">
-          <number>5</number>
-         </property>
-         <item>
-          <property name="text">
-           <string>Item1</string>
-          </property>
-          <property name="checkState">
-           <enum>Checked</enum>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>New Item</string>
-          </property>
-          <property name="checkState">
-           <enum>Unchecked</enum>
-          </property>
-          <property name="flags">
-           <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-          </property>
-         </item>
-        </widget>
+        <widget class="QListView" name="mainListView"/>
        </item>
       </layout>
      </widget>
