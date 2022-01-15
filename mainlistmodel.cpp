@@ -16,19 +16,22 @@
  */
 #include "mainlistmodel.h"
 
-MainListModel::MainListModel(QObject *parent)
-    : QAbstractListModel{parent}
-{
-    stringList << "Item1" << "Item2" << "Item3";
+MainListModel::MainListModel(MainData *mainData, QObject *parent)
+    : QAbstractListModel{parent} {
+
+    vector<shared_ptr<Item>> items = mainData->getItems();
+
+    for (auto rec = items.begin(); rec != items.end(); ++rec) {
+        stringList << "[TODO] " + rec->get()->getName() + " ("+rec->get()->getList()+")";
+    }
+
 }
 
-int MainListModel::rowCount(const QModelIndex &parent) const
-{
+int MainListModel::rowCount(const QModelIndex &parent) const {
     return stringList.size();
 }
 
-QVariant MainListModel::data(const QModelIndex &index, int role) const
-{
+QVariant MainListModel::data(const QModelIndex &index, int role) const {
     if (!index.isValid())
         return QVariant();
 

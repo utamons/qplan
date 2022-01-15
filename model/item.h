@@ -14,31 +14,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef ITEM_H
+#define ITEM_H
 
-#include <QMainWindow>
-#include "mainlistmodel.h"
-#include "maindata.h"
+#include <QObject>
 
-QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
-QT_END_NAMESPACE
+enum ItemState {
+    TODO, DONE, PROGRESS
+};
 
-class MainWindow : public QMainWindow {
-    Q_OBJECT
-
+class Item {
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit Item(QString name, QString list, ItemState state);
+    const QString getName() const;
+    const QString getList() const;
+    ItemState getState() const;
+
+    Item &operator=(const Item &other);
 
 private:
-    Ui::MainWindow *ui;
-    MainListModel *mainListModel;
-    MainData *settings;
-
-
+    const QString name;
+    const QString list;
+    const ItemState state;
 };
-#endif // MAINWINDOW_H
+
+#endif // ITEM_H

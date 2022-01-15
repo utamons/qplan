@@ -18,13 +18,13 @@
 #define MAINLISTMODEL_H
 
 #include <QAbstractListModel>
+#include "maindata.h"
 
-class MainListModel : public QAbstractListModel
-{
+class MainListModel : public QAbstractListModel {
     Q_OBJECT
 
 public:
-    explicit MainListModel(QObject *parent = nullptr);
+    explicit MainListModel(MainData *mainData, QObject *parent = nullptr);
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
 

@@ -19,18 +19,17 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-{
+    , ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
-    mainListModel = new MainListModel(this);
-    settings = new Settings(this);
+    settings = new MainData(this);
+    mainListModel = new MainListModel(settings, this);
+
 
     ui->mainListView->setModel(mainListModel);
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
 }
 

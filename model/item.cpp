@@ -14,22 +14,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#include "item.h"
 
-#include "qobject.h"
+Item::Item(QString name, QString list, ItemState state) :
+    name(name),
+    list(list),
+    state(state) {}
 
-class Settings : public QObject
-{
-    Q_OBJECT
-public:
-    explicit Settings(QObject *parent = nullptr);
+const QString Item::getName() const {
+    return name;
+}
 
-private:
-    const QString MAIN_FILE_NAME = "main.json";
+const QString Item::getList() const {
+    return list;
+}
 
-signals:
-
-};
-
-#endif // SETTINGS_H
+ItemState Item::getState() const {
+    return state;
+}

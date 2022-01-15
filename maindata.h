@@ -14,25 +14,38 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "settings.h"
-#include <QStandardPaths>
-#include <QFile>
-#include <QDebug>
-#include <QDir>
+#ifndef MAINDATA_H
+#define MAINDATA_H
 
-Settings::Settings(QObject *parent)
-    : QObject{parent}
-{
-    QString settings;
-    //QFile file;
-    QString path = QStandardPaths::locate(QStandardPaths::AppDataLocation, MAIN_FILE_NAME);
-    if (path.isEmpty()) {
-        qDebug() << "File not found, path" << QStandardPaths::writableLocation(QStandardPaths::AppDataLocation).append(QDir::separator()).append(MAIN_FILE_NAME);
+#include "qobject.h"
+#include "model/item.h"
 
-    } else
-        qDebug() << "File found";
-    /*file.setFileName(QStandardPaths::AppDataLocation);
-    file.open(QIODevice::ReadOnly | QIODevice::Text);
-    settings = file.readAll();
-    file.close();*/
-}
+using std::shared_ptr;
+using std::make_shared;
+using std::vector;
+
+
+
+class MainData : public QObject {
+
+public:
+    explicit MainData(QObject *parent = nullptr);
+
+    vector<shared_ptr<Item>> getItems() {
+        return items;
+    }
+
+private:
+    const QString MAIN_FILE_NAME = "main.json";
+    const QString dataDirPath;
+    const QString dataFilePath;
+
+
+    void initData();
+    void saveJson();
+    void readJson();
+
+    vector<shared_ptr<Item>> items;
+};
+
+#endif // MAINDATA_H
