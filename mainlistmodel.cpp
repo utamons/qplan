@@ -22,7 +22,8 @@ MainListModel::MainListModel(MainData *mainData, QObject *parent)
     vector<shared_ptr<Item>> items = mainData->getItems();
 
     for (auto rec = items.begin(); rec != items.end(); ++rec) {
-        stringList << "[TODO] " + rec->get()->getName() + " ("+rec->get()->getList()+")";
+        Item *item = rec->get();
+        stringList << "[" + Item::toStateStr(item->getState()) +"] " + item->getName() + " ("+item->getList()+")";
     }
 
 }

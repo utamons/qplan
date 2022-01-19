@@ -49,7 +49,7 @@ void MainData::initData() {
     items.push_back(make_shared<Item>(Item("Create the second item","main", TODO)));
 }
 
-void MainData::saveJson() {
+void MainData::saveJson() const {
     QFile file(dataFilePath);
     if(!file.open(QIODevice::ReadWrite)) {
         qDebug() << "JSON file open error";

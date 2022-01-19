@@ -32,6 +32,12 @@ public:
 
     Item &operator=(const Item &other);
 
+    static ItemState toState(int value) {
+        return static_cast<ItemState>(value);
+    }
+
+    static QString toStateStr(int value);
+
 private:
     const QString name;
     const QString list;

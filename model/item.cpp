@@ -32,3 +32,16 @@ const QString Item::getList() const {
 ItemState Item::getState() const {
     return state;
 }
+
+QString Item::toStateStr(int value) {
+    ItemState state = static_cast<ItemState>(value);
+
+    if (state == TODO)
+        return "TODO";
+    if (state == DONE)
+        return "DONE";
+    if (state == PROGRESS)
+        return "PROGRESS";
+
+    return "UNKNOWN";
+}

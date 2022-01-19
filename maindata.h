@@ -42,7 +42,7 @@ private:
 
 
     void initData();
-    void saveJson();
+    void saveJson() const;
     void readJson();
 
     vector<shared_ptr<Item>> items;
