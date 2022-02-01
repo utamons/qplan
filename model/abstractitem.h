@@ -14,31 +14,34 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef ABSTRACTITEM_H
+#define ABSTRACTITEM_H
 
-#include <QMainWindow>
-#include "mainlistmodel.h"
-#include "maindata.h"
+#include <QString>
+#include <QTime>
 
-QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
-QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow {
-    Q_OBJECT
-
+class AbstractItem {
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    AbstractItem(QString name, QTime activeFor, QString cron, QDateTime at);
+
+    const QString &getName() const;
+    void setName(const QString &newName);
+
+    const QTime &getActiveFor() const;
+    void setActiveFor(const QTime &newActiveFor);
+
+    const QString &getCron() const;
+    void setCron(const QString &newCron);
+
+    const QDateTime &getAt() const;
+    void setAt(const QDateTime &newAt);
 
 private:
-    Ui::MainWindow *ui;
-    FlowModel *flowModel;
-    MainData *settings;
-
-
+    QString   name;
+    QTime     activeFor;
+    QString   cron;
+    QDateTime at;
 };
-#endif // MAINWINDOW_H
+
+#endif // ABSTRACTITEM_H

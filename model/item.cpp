@@ -16,22 +16,10 @@
  */
 #include "item.h"
 
-Item::Item(QString name, QString list, ItemState state) :
-    name(name),
+Item::Item(QString name, QTime activeFor, QString cron, QDateTime at, QString list, ItemState state) :
+    AbstractItem(name, activeFor, cron, at),
     list(list),
     state(state) {}
-
-const QString Item::getName() const {
-    return name;
-}
-
-const QString Item::getList() const {
-    return list;
-}
-
-ItemState Item::getState() const {
-    return state;
-}
 
 QString Item::toStateStr(int value) {
     ItemState state = static_cast<ItemState>(value);
@@ -44,4 +32,20 @@ QString Item::toStateStr(int value) {
         return "PROGRESS";
 
     return "UNKNOWN";
+}
+
+const QString &Item::getList() const {
+    return list;
+}
+
+void Item::setList(const QString &newList) {
+    list = newList;
+}
+
+ItemState Item::getState() const {
+    return state;
+}
+
+void Item::setState(ItemState newState) {
+    state = newState;
 }

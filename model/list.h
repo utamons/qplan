@@ -14,31 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef LIST_H
+#define LIST_H
 
-#include <QMainWindow>
-#include "mainlistmodel.h"
-#include "maindata.h"
+#include <QString>
+#include <QDateTime>
+#include "abstractitem.h"
 
-QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow {
-    Q_OBJECT
-
+class List : public AbstractItem {
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
-private:
-    Ui::MainWindow *ui;
-    FlowModel *flowModel;
-    MainData *settings;
-
-
+    List(QString name, QTime activeFor, QString cron, QDateTime at);
 };
-#endif // MAINWINDOW_H
+
+#endif // LIST_H

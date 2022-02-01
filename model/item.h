@@ -17,20 +17,16 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include <QObject>
+#include <QString>
+#include "abstractitem.h"
 
 enum ItemState {
     TODO, DONE, PROGRESS
 };
 
-class Item {
+class Item : public AbstractItem {
 public:
-    explicit Item(QString name, QString list, ItemState state);
-    const QString getName() const;
-    const QString getList() const;
-    ItemState getState() const;
-
-    Item &operator=(const Item &other);
+    Item(QString name, QTime activeFor, QString cron, QDateTime at, QString list, ItemState state);
 
     static ItemState toState(int value) {
         return static_cast<ItemState>(value);
@@ -38,10 +34,14 @@ public:
 
     static QString toStateStr(int value);
 
+    const QString &getList() const;
+    void setList(const QString &newList);
+    ItemState getState() const;
+    void setState(ItemState newState);
+
 private:
-    const QString name;
-    const QString list;
-    const ItemState state;
+    QString list;
+    ItemState state;
 };
 
 #endif // ITEM_H

@@ -20,11 +20,11 @@
 #include <QAbstractListModel>
 #include "maindata.h"
 
-class MainListModel : public QAbstractListModel {
+class FlowModel : public QAbstractListModel {
     Q_OBJECT
 
 public:
-    explicit MainListModel(MainData *mainData, QObject *parent = nullptr);
+    explicit FlowModel(MainData *mainData, QObject *parent = nullptr);
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
 

@@ -16,7 +16,7 @@
  */
 #include "mainlistmodel.h"
 
-MainListModel::MainListModel(MainData *mainData, QObject *parent)
+FlowModel::FlowModel(MainData *mainData, QObject *parent)
     : QAbstractListModel{parent} {
 
     vector<shared_ptr<Item>> items = mainData->getItems();
@@ -28,11 +28,11 @@ MainListModel::MainListModel(MainData *mainData, QObject *parent)
 
 }
 
-int MainListModel::rowCount(const QModelIndex &parent) const {
+int FlowModel::rowCount(const QModelIndex &parent) const {
     return stringList.size();
 }
 
-QVariant MainListModel::data(const QModelIndex &index, int role) const {
+QVariant FlowModel::data(const QModelIndex &index, int role) const {
     if (!index.isValid())
         return QVariant();
 

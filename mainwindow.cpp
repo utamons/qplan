@@ -23,10 +23,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     settings = new MainData(this);
-    mainListModel = new MainListModel(settings, this);
+    flowModel = new FlowModel(settings, this);
 
 
-    ui->mainListView->setModel(mainListModel);
+    ui->mainListView->setModel(flowModel);
 }
 
 MainWindow::~MainWindow() {

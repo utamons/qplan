@@ -1,5 +1,9 @@
 SOURCES += \
-    $$PWD/item.cpp
+    $$PWD/abstractitem.cpp \
+    $$PWD/item.cpp \
+    $$PWD/list.cpp
 
 HEADERS += \
-    $$PWD/item.h
+    $$PWD/abstractitem.h \
+    $$PWD/item.h \
+    $$PWD/list.h

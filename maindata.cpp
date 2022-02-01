@@ -45,8 +45,8 @@ MainData::MainData(QObject *parent)
 }
 
 void MainData::initData() {
-    items.push_back(make_shared<Item>(Item("Create the first item","main", TODO)));
-    items.push_back(make_shared<Item>(Item("Create the second item","main", TODO)));
+    items.push_back(make_shared<Item>(Item("Create the first item", QTime(), QString(), QDateTime(), "main", TODO)));
+    items.push_back(make_shared<Item>(Item("Create the second item",QTime(), QString(), QDateTime(), "main", TODO)));
 }
 
 void MainData::saveJson() const {
@@ -96,6 +96,7 @@ void MainData::readJson() {
     for (auto rec = items.begin(); rec != items.end(); ++rec) {
         QJsonObject value = rec->toObject();
         this->items.push_back(make_shared<Item>(Item(value.value("name").toString(),
+                                                QTime(), QString(), QDateTime(),
                                                 value.value("list").toString(),
                                                 static_cast<ItemState>(value.value("state").toInt()))));
     }
