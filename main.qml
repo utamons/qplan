@@ -22,29 +22,60 @@ import 'utils.js' as Utils
 
 ApplicationWindow {
     id: mainWindow
-    objectName: mainWindow
     width: 640
     height: 480
     visible: true
     title: qsTr("QtPlan - testing Qt Quick")
-    property list<MyRectangle> rectangles
+    color: 'white'
 
-    //menu containing two menu items
-    menuBar: MenuBar {
-        Menu {
-            title: qsTr("File")
-            MenuItem {
-                text: qsTr("&Rectangle - QML")
-                onTriggered: ()=>Utils.createRectangle();
+    Text {
+        color: "black"
+        x: 5
+        y: 5
+        text: "Sidebar"
+    }
+
+    signal qmlSignal(msg: string)
+
+
+    function myQmlFunction(msg: string) : string {
+        console.log("Got message:", msg)
+        rectangles[0].children[0].text = msg
+        return "some return value"
+    }
+
+        Rectangle {
+            id: mainArea
+            width: expanded ? parent.width : parent.width - parent.width * 0.3
+            height: parent.height
+            x: expanded ? 0 : parent.width * 0.3
+            y: 0
+            color:  "green"
+            property bool expanded: true;
+
+            Text {
+                color: "white"
+                anchors.centerIn: parent
+                text: "Main area"
             }
-            MenuItem {
-                text: qsTr("&Fetch")
-                onTriggered: ()=>Utils.getHello();
-            }
-            MenuItem {
-                text: qsTr("Exit")
-                onTriggered: Qt.quit();
+
+            Rectangle {
+                id: toggleButton
+                width: 20
+                height: 20
+                y: parent.height - 25
+                x: 5
+                border.color: "white"
+                border.width: 2
+                radius: 5
+                color: 'transparent'
+
+                TapHandler {
+                    onTapped:  {
+                        mainArea.expanded = !mainArea.expanded
+                    }
+
+                }
             }
         }
     }
-}

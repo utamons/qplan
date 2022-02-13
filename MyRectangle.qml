@@ -42,6 +42,7 @@ Rectangle {
                 toGreen.start()
                 parent.children[0].text = "A green rectangle"
             }
+            mainWindow.qmlSignal(parent.children[0].text);
         }
 
     }

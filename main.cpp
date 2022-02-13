@@ -18,6 +18,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlComponent>
 #include <QQuickItem>
+#include <QQuickView>
+#include "qmlsignals.h"
 
 
 int main(int argc, char *argv[])
@@ -37,6 +39,13 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
+
+    QObject* mainWindow = engine.rootObjects().at(0);
+
+    QmlSignals s(mainWindow);
+    QObject::connect(mainWindow, SIGNAL(qmlSignal(QString)),
+                     &s, SLOT(cppSlot(QString)));
+
 
     return app.exec();
 }

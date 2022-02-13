@@ -6,10 +6,12 @@ include($$PWD/model/model.pri)
 
 SOURCES += \
     main.cpp \
-    maindata.cpp
+    maindata.cpp \
+    qmlsignals.cpp
 
 HEADERS += \
-    maindata.h
+    maindata.h \
+    qmlsignals.h
 
 RESOURCES += qml.qrc
 
