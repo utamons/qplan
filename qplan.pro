@@ -1,28 +1,23 @@
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += quick
 
 CONFIG += c++11
 
 include($$PWD/model/model.pri)
 
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-
 SOURCES += \
     main.cpp \
-    maindata.cpp \
-    mainlistmodel.cpp \
-    mainwindow.cpp
+    maindata.cpp
 
 HEADERS += \
-    maindata.h \
-    mainlistmodel.h \
-    mainwindow.h
+    maindata.h
 
-FORMS += \
-    mainwindow.ui
+RESOURCES += qml.qrc
+
+# Additional import path used to resolve QML modules in Qt Creator's code model
+QML_IMPORT_PATH =
+
+# Additional import path used to resolve QML modules just for Qt Quick Designer
+QML_DESIGNER_IMPORT_PATH =
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
