@@ -16,6 +16,7 @@
  */
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 import 'utils.js' as Utils
 
 
@@ -25,14 +26,27 @@ ApplicationWindow {
     width: 640
     height: 480
     visible: true
-    title: qsTr("QtPlan - testing Qt Quick")
+    title: qsTr("QtPlan")
     color: 'white'
 
-    Text {
-        color: "black"
-        x: 5
-        y: 5
-        text: "Sidebar"
+    ColumnLayout{
+        spacing: 1
+        SideBarItem {
+            text: qsTr("Agenda")
+        }
+        SideBarItem {
+            text: qsTr("Daily stream")
+        }
+        SideBarItem {
+            text: qsTr("List 1")
+        }
+        SideBarItem {
+            text: qsTr("List 2")
+        }
+    }
+    SideBarItem {
+        y: parent.height - 40
+        text: qsTr("+ New list")
     }
 
     signal qmlSignal(msg: string)
@@ -71,10 +85,7 @@ ApplicationWindow {
                 color: 'transparent'
 
                 TapHandler {
-                    onTapped:  {
-                        mainArea.expanded = !mainArea.expanded
-                    }
-
+                    onTapped: () => mainArea.expanded = !mainArea.expanded
                 }
             }
         }

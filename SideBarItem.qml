@@ -19,32 +19,29 @@ import QtQuick.Controls 2.15
 
 
 Rectangle {
-    id: rect
-    width: 100
-    height: 100
-    color:  "green"
+    color: mouseArea.containsMouse?"lightgray":"white"
+    property string text: qsTr("Agenda")
+
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: console.log("clicked "+parent.text)
+    }
 
     Text {
-        color: "white"
-        anchors.centerIn: parent
-        text: "A green rectangle"
+        color: "black"
+        text: parent.text
+        padding: 10
+        font.pointSize: 11
     }
 
-    ColorAnimation on color {id: toBlue; running: false; to: "blue"; duration: 1000 }
-    ColorAnimation on color {id: toGreen; running: false; to: "green"; duration: 1000 }
-
-    TapHandler {
-        onTapped:  {
-            if (Qt.colorEqual(parent.color, "green")) {
-                toBlue.start()
-                parent.children[0].text = "A blue rectangle"
-            } else {
-                toGreen.start()
-                parent.children[0].text = "A green rectangle"
-            }
-            mainWindow.qmlSignal(parent.children[0].text);
+    Behavior on color {
+        ColorAnimation{
+            duration: 200
+            easing.type: Easing.InOutQuad
         }
-
     }
+    width: mainWindow.width/3
+    height: 40
 }
-
