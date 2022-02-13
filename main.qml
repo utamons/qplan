@@ -77,12 +77,16 @@ ApplicationWindow {
                 id: toggleButton
                 width: 20
                 height: 20
-                y: parent.height - 25
-                x: 5
-                border.color: "white"
-                border.width: 2
-                radius: 5
+                y: parent.height - 30
+                x: 7
                 color: 'transparent'
+
+                Text {
+                    color: "white"
+                    anchors.centerIn: parent
+                    text: mainArea.expanded? ">>" : "<<"
+                    font.pointSize: 11
+                }
 
                 TapHandler {
                     onTapped: () => mainArea.expanded = !mainArea.expanded
