@@ -11,10 +11,13 @@ class FileHelperTest : public QObject
     Q_OBJECT
 
 private:
-    QDir dataDir{QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)};
+    QString dataDirPath{QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)};
+    QDir dataDir{dataDirPath};
+    QString dataFilePath {dataDirPath+QDir::separator()+"main.json"};
 
 private slots:
     void directoryCreationTest();
+    void saveTest();
     void cleanupTestCase();
 };
 
@@ -26,6 +29,20 @@ void FileHelperTest::directoryCreationTest() {
     FileHelper file;
 
     QVERIFY(dataDir.exists());
+}
+
+void FileHelperTest::saveTest() {
+    FileHelper file;
+    QString testString("Test string");
+    QByteArray qb = testString.toUtf8();
+
+    file.save(qb);
+
+    QFile testFile(dataFilePath);
+    testFile.open(QIODevice::ReadOnly | QIODevice::Text);
+    QString actual = testFile.readAll();
+
+    QCOMPARE(actual, testString);
 }
 
 void FileHelperTest::cleanupTestCase() {
