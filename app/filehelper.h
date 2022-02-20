@@ -14,38 +14,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef MAINDATA_H
-#define MAINDATA_H
+#ifndef FILEHELPER_H
+#define FILEHELPER_H
 
-#include "qobject.h"
-#include "model/item.h"
+#include <QObject>
 
-using std::shared_ptr;
-using std::make_shared;
-using std::vector;
-
-
-
-class MainData : public QObject {
-
+class FileHelper : public QObject
+{
+    Q_OBJECT
 public:
-    explicit MainData(QObject *parent = nullptr);
+    explicit FileHelper(QObject *parent = nullptr);
 
-    vector<shared_ptr<Item>> getItems() {
-        return items;
-    }
+    void save(const QByteArray &data) const;
+    QString read() const;
 
 private:
     const QString MAIN_FILE_NAME = "main.json";
     const QString dataDirPath;
     const QString dataFilePath;
 
-
-    void initData();
-    void saveJson() const;
-    void readJson();
-
-    vector<shared_ptr<Item>> items;
 };
 
-#endif // MAINDATA_H
+#endif // FILEHELPER_H

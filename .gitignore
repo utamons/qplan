@@ -104,3 +104,9 @@ Thumbs.db
 *.exe
 *.out
 *.app
+
+# Mind maps
+*.mm
+
+debug/
+release/

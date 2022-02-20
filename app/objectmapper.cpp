@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "maindata.h"
+#include "objectmapper.h"
 #include <QStandardPaths>
 #include <QFile>
 #include <QDebug>
@@ -23,33 +23,10 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 
-MainData::MainData(QObject *parent)
-    : QObject{parent},
-      dataDirPath{QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)},
-      dataFilePath{dataDirPath+QDir::separator()+MAIN_FILE_NAME} {
+ObjectMapper::ObjectMapper(QObject *parent)
+    : QObject{parent} {}
 
-    if (!QDir(dataDirPath).exists()) {
-        if (!QDir().mkdir(dataDirPath)) {
-            qDebug() << "Cannot create" << dataDirPath;
-        }
-    }
-
-    if (QStandardPaths::locate(QStandardPaths::AppDataLocation, MAIN_FILE_NAME).isEmpty()) {
-        initData();
-        saveJson();
-    }
-
-    if (items.size() == 0) {
-        readJson();
-    }
-}
-
-void MainData::initData() {
-    items.push_back(make_shared<Item>(Item("Create the first item", QTime(), QString(), QDateTime(), "main", TODO)));
-    items.push_back(make_shared<Item>(Item("Create the second item",QTime(), QString(), QDateTime(), "main", TODO)));
-}
-
-void MainData::saveJson() const {
+/*void ObjectMapper::saveJson() const {
     QFile file(dataFilePath);
     if(!file.open(QIODevice::ReadWrite)) {
         qDebug() << "JSON file open error";
@@ -80,9 +57,9 @@ void MainData::saveJson() const {
     file.write(jsonDoc.toJson());
     file.close();
     qDebug() << "Write JSON to file";
-}
+}*/
 
-void MainData::readJson() {
+/*void ObjectMapper::readJson() {
     qDebug() << "Read JSON";
     QString val;
     QFile file(dataFilePath);
@@ -101,4 +78,4 @@ void MainData::readJson() {
                                                 static_cast<ItemState>(value.value("state").toInt()))));
     }
 
-}
+}*/
