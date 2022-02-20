@@ -7,7 +7,7 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES +=  tst_filehelpertest.cpp \
-    ../app/filehelper.cpp
+    ../qplan/filehelper.cpp
 
 HEADERS += \
-    ../app/filehelper.h
+    ../qplan/filehelper.h

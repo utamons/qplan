@@ -1,5 +1,8 @@
 #include <QtTest>
-#include "../app/filehelper.h"
+#include <QStandardPaths>
+#include <QDir>
+
+#include "../qplan/filehelper.h"
 
 // add necessary includes here
 
@@ -7,15 +10,28 @@ class FileHelperTest : public QObject
 {
     Q_OBJECT
 
-private slots:
-    void simpleTest();
+private:
+    QDir dataDir{QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)};
 
+private slots:
+    void directoryCreationTest();
+    void cleanupTestCase();
 };
 
-void FileHelperTest::simpleTest() {
+void FileHelperTest::directoryCreationTest() {
+    if (dataDir.exists()) {
+        dataDir.removeRecursively();
+    }
+
     FileHelper file;
-    QString str = "Hello";
-    QVERIFY(str.toUpper() == "HELLO");
+
+    QVERIFY(dataDir.exists());
+}
+
+void FileHelperTest::cleanupTestCase() {
+    if (dataDir.exists()) {
+        dataDir.removeRecursively();
+    }
 }
 
 
@@ -35,7 +51,6 @@ void FileHelperTest::simpleTest() {
 
 
 
-
-QTEST_APPLESS_MAIN(FileHelperTest)
+QTEST_MAIN(FileHelperTest)
 
 #include "tst_filehelpertest.moc"
