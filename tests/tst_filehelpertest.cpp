@@ -18,6 +18,7 @@ private:
 private slots:
     void directoryCreationTest();
     void saveTest();
+    void readTest();
     void cleanupTestCase();
 };
 
@@ -44,6 +45,19 @@ void FileHelperTest::saveTest() {
 
     QCOMPARE(actual, testString);
 }
+
+void FileHelperTest::readTest() {
+    if (!dataDir.exists()) {
+        QDir().mkdir(dataDirPath);
+    }
+
+    QString testString("Test string");
+
+    QFile file(dataFilePath);
+    file.resize(0);
+}
+
+
 
 void FileHelperTest::cleanupTestCase() {
     if (dataDir.exists()) {
