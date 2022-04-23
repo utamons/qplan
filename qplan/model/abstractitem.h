@@ -23,25 +23,27 @@
 
 class AbstractItem {
 public:
-    AbstractItem(QString name, QTime activeFor, QString cron, QDateTime at);
+    AbstractItem(QString name, QTime* activeFor, QString* cron, QDateTime* at);
 
     const QString &getName() const;
     void setName(const QString &newName);
 
-    const QTime &getActiveFor() const;
-    void setActiveFor(const QTime &newActiveFor);
 
-    const QString &getCron() const;
-    void setCron(const QString &newCron);
 
-    const QDateTime &getAt() const;
-    void setAt(const QDateTime &newAt);
+    QTime *getActiveFor() const;
+    void setActiveFor(QTime *newActiveFor);
+
+    QString *getCron() const;
+    void setCron(QString *newCron);
+
+    QDateTime *getAt() const;
+    void setAt(QDateTime *newAt);
 
 private:
-    QString   name;
-    QTime     activeFor;
-    QString   cron;
-    QDateTime at;
+    QString    name;
+    QTime*     activeFor;
+    QString*   cron;
+    QDateTime* at;
 };
 
 #endif // ABSTRACTITEM_H

@@ -20,6 +20,8 @@
 #include <QQuickItem>
 #include <QQuickView>
 #include "qmlsignals.h"
+#include "filehelper.h"
+#include "model/agenda.h"
 
 
 int main(int argc, char *argv[])
@@ -46,6 +48,27 @@ int main(int argc, char *argv[])
     QObject::connect(mainWindow, SIGNAL(qmlSignal(QString)),
                      &s, SLOT(cppSlot(QString)));
 
+
+    FileHelper filehelper;
+
+    QString json = filehelper.read();
+    if (json.isEmpty()) {
+        Agenda agenda;
+        std::vector<List> lists;
+
+        /*
+         * TODO
+         *
+         * Next iteration - find out for:
+         *
+         * 1. Properties - should it be dumb or smart pointers.
+         * 2. Vector items - the same.
+         *
+         * Implement model classes.
+         */
+        List list1("List 1",nullptr,nullptr,nullptr);
+
+    }
 
     return app.exec();
 }

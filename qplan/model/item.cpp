@@ -16,7 +16,7 @@
  */
 #include "item.h"
 
-Item::Item(QString name, QTime activeFor, QString cron, QDateTime at, QString list, ItemState state) :
+Item::Item(QString name, QTime* activeFor, QString* cron, QDateTime* at, QString list, ItemState state) :
     AbstractItem(name, activeFor, cron, at),
     list(list),
     state(state) {}

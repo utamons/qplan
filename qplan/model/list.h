@@ -20,10 +20,11 @@
 #include <QString>
 #include <QDateTime>
 #include "abstractitem.h"
+#include "item.h"
 
 class List : public AbstractItem {
 public:
-    List(QString name, QTime activeFor, QString cron, QDateTime at);
+    List(QString name, QTime* activeFor, QString* cron, QDateTime* at);
 };
 
 #endif // LIST_H

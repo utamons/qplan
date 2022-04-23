@@ -26,7 +26,7 @@ enum ItemState {
 
 class Item : public AbstractItem {
 public:
-    Item(QString name, QTime activeFor, QString cron, QDateTime at, QString list, ItemState state);
+    Item(QString name, QTime* activeFor, QString* cron, QDateTime* at, QString list, ItemState state);
 
     static ItemState toState(int value) {
         return static_cast<ItemState>(value);

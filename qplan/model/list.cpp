@@ -16,7 +16,7 @@
  */
 #include "list.h"
 
-List::List(QString name, QTime activeFor, QString cron, QDateTime at) :
+List::List(QString name, QTime* activeFor, QString* cron, QDateTime* at) :
     AbstractItem(name, activeFor, cron, at) {
 
 }

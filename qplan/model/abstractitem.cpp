@@ -16,7 +16,7 @@
  */
 #include "abstractitem.h"
 
-AbstractItem::AbstractItem(QString name, QTime activeFor, QString cron, QDateTime at) :
+AbstractItem::AbstractItem(QString name, QTime* activeFor, QString* cron, QDateTime* at) :
     name(name),
     activeFor(activeFor),
     cron(cron),
@@ -30,27 +30,33 @@ void AbstractItem::setName(const QString &newName) {
     name = newName;
 }
 
-const QTime &AbstractItem::getActiveFor() const {
+QTime *AbstractItem::getActiveFor() const
+{
     return activeFor;
 }
 
-void AbstractItem::setActiveFor(const QTime &newActiveFor) {
+void AbstractItem::setActiveFor(QTime *newActiveFor)
+{
     activeFor = newActiveFor;
 }
 
-const QString &AbstractItem::getCron() const {
+QString *AbstractItem::getCron() const
+{
     return cron;
 }
 
-void AbstractItem::setCron(const QString &newCron) {
+void AbstractItem::setCron(QString *newCron)
+{
     cron = newCron;
 }
 
-const QDateTime &AbstractItem::getAt() const {
+QDateTime *AbstractItem::getAt() const
+{
     return at;
 }
 
-void AbstractItem::setAt(const QDateTime &newAt) {
+void AbstractItem::setAt(QDateTime *newAt)
+{
     at = newAt;
 }
 

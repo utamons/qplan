@@ -59,5 +59,6 @@ QString FileHelper::read() const {
         file.close();
         return val;
     }
+    qDebug() << "Storage file not found";
     return QString();
 }
